@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Keuangan - BUMO SMKN 1 Cikarang Selatan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h2>BUMO</h2>
+                <span class="nav-subtitle">SMKN 1 Cikarang Selatan</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profil.html">Profil</a></li>
+                <li><a href="laporan.html" class="active">Laporan</a></li>
+                <li><a href="artikel.html">Artikel</a></li>
+                <li><a href="dokumentasi.html">Dokumentasi</a></li>
+                <li><a href="alumni.html">Alumni</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Laporan Keuangan</h1>
+            <p>Transparansi keuangan untuk akuntabilitas dan kepercayaan</p>
+        </div>
+    </section>
+
+    <!-- Financial Summary -->
+    <section class="content-section">
+        <div class="container">
+            <div class="stats-grid" style="margin-bottom: 3rem;">
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-number" id="totalPendapatan">Rp 0</div>
+                    <div class="stat-label">Total Pendapatan</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💸</div>
+                    <div class="stat-number" id="totalPengeluaran">Rp 0</div>
+                    <div class="stat-label">Total Pengeluaran</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-number" id="totalSaldo">Rp 0</div>
+                    <div class="stat-label">Saldo Bersih</div>
+                </div>
+            </div>
+
+            <!-- Chart -->
+            <div class="card">
+                <h2>Grafik Keuangan</h2>
+                <canvas id="financeChart" style="max-height: 400px;"></canvas>
+            </div>
+
+            <!-- Financial Table -->
+            <div class="card">
+                <h2>Detail Laporan Keuangan</h2>
+                <div class="table-responsive">
+                    <table id="laporanTable">
+                        <thead>
+                            <tr>
+                                <th>Periode</th>
+                                <th>Tanggal</th>
+                                <th>Pendapatan</th>
+                                <th>Pengeluaran</th>
+                                <th>Saldo</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="laporanTableBody">
+                            <!-- Loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BUMO</h3>
+                    <p>Badan Usaha Milik OSIS<br>SMKN 1 Cikarang Selatan</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="profil.html">Profil</a></li>
+                        <li><a href="laporan.html">Laporan</a></li>
+                        <li><a href="artikel.html">Artikel</a></li>
+                        <li><a href="dokumentasi.html">Dokumentasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>SMKN 1 Cikarang Selatan<br>Jl. Pendidikan, Cikarang Selatan<br>Bekasi, Jawa Barat</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BUMO - SMKN 1 Cikarang Selatan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let financeChart;
+
+        function formatCurrency(amount) {
+            return 'Rp ' + amount.toLocaleString('id-ID');
+        }
+
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('id-ID', options);
+        }
+
+        async function loadFinancialData() {
+            try {
+                const response = await fetch('/api/laporan');
+                const laporan = await response.json();
+
+                if (laporan.length === 0) {
+                    document.getElementById('laporanTableBody').innerHTML = 
+                        '<tr><td colspan="6" class="text-center">Belum ada data laporan keuangan</td></tr>';
+                    return;
+                }
+
+                // Calculate totals
+                const totalPendapatan = laporan.reduce((sum, l) => sum + (l.pendapatan || 0), 0);
+                const totalPengeluaran = laporan.reduce((sum, l) => sum + (l.pengeluaran || 0), 0);
+                const totalSaldo = totalPendapatan - totalPengeluaran;
+
+                document.getElementById('totalPendapatan').textContent = formatCurrency(totalPendapatan);
+                document.getElementById('totalPengeluaran').textContent = formatCurrency(totalPengeluaran);
+                document.getElementById('totalSaldo').textContent = formatCurrency(totalSaldo);
+
+                // Populate table
+                const tableBody = document.getElementById('laporanTableBody');
+                tableBody.innerHTML = laporan.map(item => `
+                    <tr>
+                        <td><strong>${item.periode}</strong></td>
+                        <td>${formatDate(item.tanggal)}</td>
+                        <td style="color: #1ABC9C;">${formatCurrency(item.pendapatan)}</td>
+                        <td style="color: #E74C3C;">${formatCurrency(item.pengeluaran)}</td>
+                        <td><strong>${formatCurrency(item.saldo)}</strong></td>
+                        <td>${item.keterangan}</td>
+                    </tr>
+                `).join('');
+
+                // Create chart
+                createChart(laporan);
+            } catch (error) {
+                console.error('Error loading financial data:', error);
+                document.getElementById('laporanTableBody').innerHTML = 
+                    '<tr><td colspan="6" class="text-center" style="color: red;">Gagal memuat data laporan</td></tr>';
+            }
+        }
+
+        function createChart(data) {
+            const ctx = document.getElementById('financeChart').getContext('2d');
+            
+            if (financeChart) {
+                financeChart.destroy();
+            }
+
+            financeChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.map(item => item.periode),
+                    datasets: [
+                        {
+                            label: 'Pendapatan',
+                            data: data.map(item => item.pendapatan),
+                            backgroundColor: 'rgba(26, 188, 156, 0.8)',
+                            borderColor: 'rgba(26, 188, 156, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Pengeluaran',
+                            data: data.map(item => item.pengeluaran),
+                            backgroundColor: 'rgba(231, 76, 60, 0.8)',
+                            borderColor: 'rgba(231, 76, 60, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Saldo',
+                            data: data.map(item => item.saldo),
+                            backgroundColor: 'rgba(0, 60, 143, 0.8)',
+                            borderColor: 'rgba(0, 60, 143, 1)',
+                            borderWidth: 2,
+                            type: 'line'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    family: 'Poppins',
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += formatCurrency(context.parsed.y);
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return 'Rp ' + (value / 1000000).toFixed(1) + 'jt';
+                                },
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        loadFinancialData();
+    </script>
+</body>
+</html>
