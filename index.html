@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUMO - Badan Usaha Milik OSIS SMKN 1 Cikarang Selatan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="container">
+        <div class="nav-brand">
+            <div class="nav-logos">
+                <img src="/uploads/logo-osis.png" alt="OSIS" class="nav-logo" onerror="this.style.display='none'">
+                <img src="/uploads/logo-bumo.png" alt="BUMO" class="nav-logo" onerror="this.style.display='none'">
+            </div>
+            <div class="nav-text">
+                <h2>BUMO</h2>
+                <span class="nav-subtitle">SMKN 1 Cikarang Selatan</span>
+            </div>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="profil.html">Profil</a></li>
+            <li><a href="laporan.html">Laporan</a></li>
+            <li><a href="artikel.html">Artikel</a></li>
+            <li><a href="dokumentasi.html">Dokumentasi</a></li>
+            <li><a href="alumni.html">Alumni</a></li>
+            <li><a href="login.html" class="btn-login">Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-badge">🎓 Student Business Initiative</div>
+            <h1 class="hero-title">Welcome to BUMO</h1>
+            <p class="hero-subtitle">Badan Usaha Milik OSIS SMKN 1 Cikarang Selatan</p>
+            <p class="hero-description">
+                Membangun jiwa entrepreneurship siswa melalui praktik bisnis nyata, 
+                mengelola usaha dengan profesional, dan menciptakan dampak positif 
+                untuk sekolah dan masyarakat.
+            </p>
+            <div class="hero-actions">
+                <a href="profil.html" class="btn btn-primary">Learn More</a>
+                <a href="laporan.html" class="btn btn-secondary">Finance Report</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-number" id="totalRevenue">0</div>
+                    <div class="stat-label">Total Revenue</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <div class="stat-number" id="totalArticles">0</div>
+                    <div class="stat-label">Articles Published</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📸</div>
+                    <div class="stat-number" id="totalDocs">0</div>
+                    <div class="stat-label">Events Documented</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎓</div>
+                    <div class="stat-number" id="totalAlumni">0</div>
+                    <div class="stat-label">Alumni Members</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>What We Do</h2>
+                <p>Empowering students through entrepreneurship education and business practice</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Business Management</h3>
+                    <p>Mengelola berbagai unit usaha sekolah dengan sistem manajemen profesional</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Financial Transparency</h3>
+                    <p>Laporan keuangan transparan dan akuntabel untuk setiap periode</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Education Program</h3>
+                    <p>Program edukasi kewirausahaan melalui workshop dan mentoring</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Community Impact</h3>
+                    <p>Berkontribusi positif untuk pengembangan sekolah dan masyarakat</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Articles Preview -->
+    <section class="recent-articles">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest Articles</h2>
+                <p>Entrepreneurship insights and business tips for students</p>
+            </div>
+            <div class="articles-preview" id="articlesPreview">
+                <!-- Loaded dynamically -->
+            </div>
+            <div class="text-center">
+                <a href="artikel.html" class="btn btn-primary">View All Articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Join Our Entrepreneurship Journey</h2>
+                <p>Tertarik bergabung dengan BUMO? Pelajari lebih lanjut tentang program kami</p>
+                <a href="profil.html" class="btn btn-white">Learn More About Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BUMO</h3>
+                    <p>Badan Usaha Milik OSIS<br>SMKN 1 Cikarang Selatan</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="profil.html">Profil</a></li>
+                        <li><a href="laporan.html">Laporan</a></li>
+                        <li><a href="artikel.html">Artikel</a></li>
+                        <li><a href="dokumentasi.html">Dokumentasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>SMKN 1 Cikarang Selatan<br>Jl. Pendidikan, Cikarang Selatan<br>Bekasi, Jawa Barat</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BUMO - SMKN 1 Cikarang Selatan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script>
+        // Load stats
+        async function loadStats() {
+            try {
+                const [laporan, artikel, dokumentasi, alumni] = await Promise.all([
+                    fetch('/api/laporan').then(r => r.json()),
+                    fetch('/api/artikel').then(r => r.json()),
+                    fetch('/api/dokumentasi').then(r => r.json()),
+                    fetch('/api/alumni').then(r => r.json())
+                ]);
+
+                const totalRevenue = laporan.reduce((sum, l) => sum + (l.pendapatan || 0), 0);
+                animateNumber('totalRevenue', totalRevenue, 'Rp ', true);
+                animateNumber('totalArticles', artikel.length);
+                animateNumber('totalDocs', dokumentasi.length);
+                animateNumber('totalAlumni', alumni.length);
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        // Load recent articles
+        async function loadRecentArticles() {
+            try {
+                const articles = await fetch('/api/artikel').then(r => r.json());
+                const recent = articles.slice(0, 3);
+                const container = document.getElementById('articlesPreview');
+                
+                if (recent.length === 0) {
+                    container.innerHTML = '<p class="text-center">Belum ada artikel tersedia</p>';
+                    return;
+                }
+
+                container.innerHTML = recent.map(article => `
+                    <div class="article-preview-card">
+                        <div class="article-date">${formatDate(article.date)}</div>
+                        <h3>${article.title}</h3>
+                        <p>${article.excerpt || article.content.substring(0, 150) + '...'}</p>
+                        <div class="article-meta">
+                            <span>By ${article.author}</span>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading articles:', error);
+            }
+        }
+
+        function animateNumber(id, target, prefix = '', currency = false) {
+            const element = document.getElementById(id);
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                if (currency) {
+                    element.textContent = prefix + Math.floor(current).toLocaleString('id-ID');
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('id-ID', options);
+        }
+
+        loadStats();
+        loadRecentArticles();
+    </script>
+</body>
+</html>

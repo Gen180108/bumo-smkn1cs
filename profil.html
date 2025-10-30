@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - BUMO SMKN 1 Cikarang Selatan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h2>BUMO</h2>
+                <span class="nav-subtitle">SMKN 1 Cikarang Selatan</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profil.html" class="active">Profil</a></li>
+                <li><a href="laporan.html">Laporan</a></li>
+                <li><a href="artikel.html">Artikel</a></li>
+                <li><a href="dokumentasi.html">Dokumentasi</a></li>
+                <li><a href="alumni.html">Alumni</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Profil BUMO</h1>
+            <p>Mengenal lebih dekat Badan Usaha Milik OSIS SMKN 1 Cikarang Selatan</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="card">
+                <h2>Tentang BUMO</h2>
+                <p>
+                    BUMO (Badan Usaha Milik OSIS) adalah sebuah organisasi kewirausahaan yang dikelola oleh siswa 
+                    SMKN 1 Cikarang Selatan. Didirikan dengan tujuan untuk mengembangkan jiwa entrepreneurship 
+                    siswa melalui praktik bisnis nyata dan pembelajaran langsung dalam dunia usaha.
+                </p>
+                <p>
+                    Kami berkomitmen untuk menciptakan ekosistem bisnis yang sehat di lingkungan sekolah, 
+                    memberikan kesempatan bagi siswa untuk belajar mengelola usaha, memahami konsep keuangan, 
+                    dan mengembangkan soft skills yang dibutuhkan dalam dunia kerja.
+                </p>
+            </div>
+
+            <!-- Vision Mission -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div class="card">
+                    <h2>Visi</h2>
+                    <p>
+                        Menjadi wadah pengembangan kewirausahaan siswa yang profesional, inovatif, dan berdampak 
+                        positif bagi sekolah dan masyarakat.
+                    </p>
+                </div>
+                <div class="card">
+                    <h2>Misi</h2>
+                    <ul style="list-style-position: inside; line-height: 2;">
+                        <li>Mengembangkan jiwa entrepreneurship siswa</li>
+                        <li>Mengelola unit usaha dengan profesional</li>
+                        <li>Memberikan edukasi kewirausahaan</li>
+                        <li>Menciptakan dampak positif untuk sekolah</li>
+                        <li>Membangun transparansi dan akuntabilitas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Organization Structure -->
+            <div class="card">
+                <h2>Struktur Organisasi Periode 2024/2025</h2>
+                <p style="margin-bottom: 2rem;">Berikut adalah pengurus BUMO untuk periode aktif saat ini:</p>
+                <div id="strukturContainer" class="table-responsive">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Values Section -->
+            <div class="card">
+                <h2>Nilai-Nilai Kami</h2>
+                <div class="features-grid" style="margin-top: 2rem;">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Integritas</h3>
+                        <p>Menjalankan usaha dengan jujur dan bertanggung jawab</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Kolaborasi</h3>
+                        <p>Bekerja sama untuk mencapai tujuan bersama</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h3>Inovasi</h3>
+                        <p>Selalu mencari cara baru untuk berkembang</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>Profesional</h3>
+                        <p>Mengelola usaha dengan standar profesional</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BUMO</h3>
+                    <p>Badan Usaha Milik OSIS<br>SMKN 1 Cikarang Selatan</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="profil.html">Profil</a></li>
+                        <li><a href="laporan.html">Laporan</a></li>
+                        <li><a href="artikel.html">Artikel</a></li>
+                        <li><a href="dokumentasi.html">Dokumentasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>SMKN 1 Cikarang Selatan<br>Jl. Pendidikan, Cikarang Selatan<br>Bekasi, Jawa Barat</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BUMO - SMKN 1 Cikarang Selatan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+async function loadStructure() {
+    try {
+        const response = await fetch('/api/struktur');
+        const struktur = await response.json();
+        const container = document.getElementById('strukturContainer');
+
+        if (struktur.length === 0) {
+            container.innerHTML = '<p class="text-center">Belum ada data struktur organisasi</p>';
+            return;
+        }
+
+        // Group by division
+        const divisions = {};
+        struktur.forEach(member => {
+            if (!divisions[member.divisi]) {
+                divisions[member.divisi] = [];
+            }
+            divisions[member.divisi].push(member);
+        });
+
+        let html = '';
+        Object.keys(divisions).forEach(division => {
+            html += `
+                <div style="margin-bottom: 3rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem;">${division}</h3>
+                    <div class="struktur-grid">
+                        ${divisions[division].map(member => `
+                            <div class="struktur-card">
+                                <img src="${member.photo || '/uploads/avatar-placeholder.png'}" 
+                                     alt="${member.nama}" 
+                                     class="struktur-photo"
+                                     onerror="this.src='/uploads/avatar-placeholder.png'">
+                                <div class="struktur-info">
+                                    <h4>${member.nama}</h4>
+                                    <div class="struktur-position">${member.jabatan}</div>
+                                    <div class="struktur-period">${member.periode}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+    } catch (error) {
+        console.error('Error loading structure:', error);
+        document.getElementById('strukturContainer').innerHTML = 
+            '<p class="text-center" style="color: red;">Gagal memuat data struktur organisasi</p>';
+    }
+}
+
+        loadStructure();
+    </script>
+</body>
+</html>

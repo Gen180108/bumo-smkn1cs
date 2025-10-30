@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - BUMO SMKN 1 Cikarang Selatan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: var(--light-gray);
+        }
+
+        .gallery-content {
+            padding: 1.5rem;
+        }
+
+        .gallery-date {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-title {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-description {
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+        }
+
+        .lightbox-info {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            background: var(--light-gray);
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h2>BUMO</h2>
+                <span class="nav-subtitle">SMKN 1 Cikarang Selatan</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profil.html">Profil</a></li>
+                <li><a href="laporan.html">Laporan</a></li>
+                <li><a href="artikel.html">Artikel</a></li>
+                <li><a href="dokumentasi.html" class="active">Dokumentasi</a></li>
+                <li><a href="alumni.html">Alumni</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Dokumentasi Kegiatan</h1>
+            <p>Momen-momen berharga perjalanan BUMO</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="content-section">
+        <div class="container">
+            <div id="galleryContainer" class="gallery-grid">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <img id="lightboxImage" class="lightbox-image" src="" alt="">
+            <div class="lightbox-info">
+                <div class="gallery-date" id="lightboxDate"></div>
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BUMO</h3>
+                    <p>Badan Usaha Milik OSIS<br>SMKN 1 Cikarang Selatan</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="profil.html">Profil</a></li>
+                        <li><a href="laporan.html">Laporan</a></li>
+                        <li><a href="artikel.html">Artikel</a></li>
+                        <li><a href="dokumentasi.html">Dokumentasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>SMKN 1 Cikarang Selatan<br>Jl. Pendidikan, Cikarang Selatan<br>Bekasi, Jawa Barat</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BUMO - SMKN 1 Cikarang Selatan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('id-ID', options);
+        }
+
+        async function loadDocumentation() {
+            try {
+                const response = await fetch('/api/dokumentasi');
+                const docs = await response.json();
+                const container = document.getElementById('galleryContainer');
+
+                if (docs.length === 0) {
+                    container.innerHTML = '<div class="card"><p class="text-center">Belum ada dokumentasi tersedia</p></div>';
+                    return;
+                }
+
+                container.innerHTML = docs.map(doc => `
+                    <div class="gallery-item" onclick='openLightbox(${JSON.stringify(doc)})'>
+                        <img src="${doc.image || '/uploads/placeholder.jpg'}" 
+                             alt="${doc.title}" 
+                             class="gallery-image"
+                             onerror="this.src='/uploads/placeholder.jpg'">
+                        <div class="gallery-content">
+                            <div class="gallery-date">${formatDate(doc.date)}</div>
+                            <h3 class="gallery-title">${doc.title}</h3>
+                            <p class="gallery-description">${doc.description}</p>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading documentation:', error);
+                document.getElementById('galleryContainer').innerHTML = 
+                    '<div class="card"><p class="text-center" style="color: red;">Gagal memuat dokumentasi</p></div>';
+            }
+        }
+
+        function openLightbox(doc) {
+            document.getElementById('lightbox').classList.add('active');
+            document.getElementById('lightboxImage').src = doc.image;
+            document.getElementById('lightboxDate').textContent = formatDate(doc.date);
+            document.getElementById('lightboxTitle').textContent = doc.title;
+            document.getElementById('lightboxDescription').textContent = doc.description;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Close lightbox on background click
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+
+        loadDocumentation();
+    </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel - BUMO SMKN 1 Cikarang Selatan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h2>BUMO</h2>
+                <span class="nav-subtitle">SMKN 1 Cikarang Selatan</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profil.html">Profil</a></li>
+                <li><a href="laporan.html">Laporan</a></li>
+                <li><a href="artikel.html" class="active">Artikel</a></li>
+                <li><a href="dokumentasi.html">Dokumentasi</a></li>
+                <li><a href="alumni.html">Alumni</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Artikel Kewirausahaan</h1>
+            <p>Wawasan, tips, dan inspirasi untuk pengusaha muda</p>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section class="content-section">
+        <div class="container">
+            <div id="artikelContainer" class="articles-preview">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BUMO</h3>
+                    <p>Badan Usaha Milik OSIS<br>SMKN 1 Cikarang Selatan</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="profil.html">Profil</a></li>
+                        <li><a href="laporan.html">Laporan</a></li>
+                        <li><a href="artikel.html">Artikel</a></li>
+                        <li><a href="dokumentasi.html">Dokumentasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>SMKN 1 Cikarang Selatan<br>Jl. Pendidikan, Cikarang Selatan<br>Bekasi, Jawa Barat</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BUMO - SMKN 1 Cikarang Selatan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('id-ID', options);
+        }
+
+        async function loadArticles() {
+            try {
+                const response = await fetch('/api/artikel');
+                const articles = await response.json();
+                const container = document.getElementById('artikelContainer');
+
+                if (articles.length === 0) {
+                    container.innerHTML = '<div class="card"><p class="text-center">Belum ada artikel tersedia</p></div>';
+                    return;
+                }
+
+                container.innerHTML = articles.map(article => `
+                    <div class="article-preview-card">
+                        <div class="article-date">${formatDate(article.date)}</div>
+                        <h3>${article.title}</h3>
+                        <p>${article.excerpt || article.content.substring(0, 200) + '...'}</p>
+                        <div class="article-meta">
+                            <span>📝 By ${article.author}</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <button onclick="viewArticle('${article.id}')" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">
+                                Baca Selengkapnya
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading articles:', error);
+                document.getElementById('artikelContainer').innerHTML = 
+                    '<div class="card"><p class="text-center" style="color: red;">Gagal memuat artikel</p></div>';
+            }
+        }
+
+        async function viewArticle(id) {
+            try {
+                const response = await fetch('/api/artikel');
+                const articles = await response.json();
+                const article = articles.find(a => a.id === id);
+
+                if (!article) {
+                    alert('Artikel tidak ditemukan');
+                    return;
+                }
+
+                // Create modal
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.8);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 10000;
+                    padding: 2rem;
+                    overflow-y: auto;
+                `;
+
+                modal.innerHTML = `
+                    <div style="background: white; max-width: 800px; width: 100%; border-radius: 12px; padding: 3rem; position: relative;">
+                        <button onclick="this.closest('div[style*=fixed]').remove()" 
+                                style="position: absolute; top: 1rem; right: 1rem; background: #ECF0F1; border: none; 
+                                       width: 40px; height: 40px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; 
+                                       transition: all 0.3s ease;">
+                            ×
+                        </button>
+                        <div style="color: #1ABC9C; font-size: 0.9rem; margin-bottom: 0.5rem;">${formatDate(article.date)}</div>
+                        <h2 style="color: #2C3E50; margin-bottom: 1rem; font-size: 2rem;">${article.title}</h2>
+                        <div style="color: #7F8C8D; font-size: 0.9rem; margin-bottom: 2rem;">By ${article.author}</div>
+                        <div style="color: #34495E; line-height: 1.8; white-space: pre-wrap;">${article.content}</div>
+                    </div>
+                `;
+
+                document.body.appendChild(modal);
+            } catch (error) {
+                console.error('Error viewing article:', error);
+                alert('Gagal memuat artikel');
+            }
+        }
+
+        loadArticles();
+    </script>
+</body>
+</html>
