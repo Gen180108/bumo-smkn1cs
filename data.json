@@ -1,0 +1,68 @@
+{
+  "laporan": [
+    {
+      "id": "1761810962860",
+      "periode": "2025",
+      "tanggal": "2025-10-28",
+      "pendapatan": 1000000,
+      "pengeluaran": 500000,
+      "saldo": 500000,
+      "keterangan": "",
+      "createdAt": "2025-10-30T07:56:02.860Z"
+    },
+    {
+      "id": "1761811173689",
+      "periode": "2025",
+      "tanggal": "2025-10-09",
+      "pendapatan": 254000,
+      "pengeluaran": 0,
+      "saldo": 254000,
+      "keterangan": "BUMO SUMPAH PEMUDA",
+      "createdAt": "2025-10-30T07:59:33.689Z"
+    }
+  ],
+  "artikel": [
+    {
+      "id": "1",
+      "title": "Strategi Kewirausahaan untuk Siswa SMK",
+      "author": "Tim BUMO",
+      "date": "2024-03-15",
+      "excerpt": "Panduan praktis memulai bisnis untuk siswa SMK",
+      "content": "Kewirausahaan adalah keterampilan penting bagi siswa SMK yang perlu dikembangkan sejak dini. Artikel ini membahas strategi praktis untuk memulai bisnis sederhana di lingkungan sekolah.\n\nBeberapa tips yang dapat diterapkan:\n\n1. Mulai dari Passion\nIdentifikasi minat dan hobi yang bisa dijadikan peluang bisnis. Ketika berbisnis sesuai passion, proses belajar akan lebih menyenangkan.\n\n2. Riset Pasar\nPahami kebutuhan siswa di sekolah. Apa yang mereka butuhkan? Produk atau jasa apa yang bisa membantu mereka?\n\n3. Mulai Kecil\nTidak perlu modal besar untuk memulai. Mulai dari skala kecil, fokus pada kualitas, dan kembangkan secara bertahap.\n\n4. Kelola Keuangan dengan Baik\nCatat setiap pemasukan dan pengeluaran. Pisahkan uang pribadi dengan uang usaha. Ini akan membantu memantau kesehatan finansial bisnis.\n\n5. Belajar dari Kegagalan\nKegagalan adalah bagian dari proses belajar. Analisis apa yang salah, perbaiki, dan coba lagi dengan strategi yang lebih baik.\n\nDengan menerapkan strategi ini, siswa SMK dapat mengembangkan jiwa entrepreneurship yang akan sangat bermanfaat untuk masa depan mereka.",
+      "createdAt": "2024-03-15T08:00:00.000Z"
+    }
+  ],
+  "dokumentasi": [
+    {
+      "id": "1761803650389",
+      "title": "OPEN RECRUITMENT BUMO BATCH 1",
+      "description": "Langkah awal inisiasi pertama program BUMO yang lebih terbuka dan general untuk dikenal oleh seluruh anggota OSIS",
+      "date": "2025-10-30",
+      "image": "/uploads/1761803650379-931081952.jpg",
+      "createdAt": "2025-10-30T05:54:10.389Z"
+    }
+  ],
+  "alumni": [
+    {
+      "id": "1",
+      "nama": "Ahmad Rizki Maulana",
+      "periode": "2023/2024",
+      "jabatan": "Ketua BUMO",
+      "angkatan": "2024",
+      "jurusan": "Teknik Komputer dan Jaringan",
+      "createdAt": "2024-06-15T10:00:00.000Z",
+      "photo": "/uploads/1761808068360-280470725.jpg"
+    }
+  ],
+  "struktur": [
+    {
+      "id": "1",
+      "nama": "Genuyus Islami Tade",
+      "jabatan": "Ketua BUMO",
+      "periode": "2024/2025",
+      "divisi": "Kepemimpinan",
+      "createdAt": "2024-08-01T08:00:00.000Z",
+      "photo": "/uploads/1761810761410-193429316.jpg"
+    }
+  ]
+}
