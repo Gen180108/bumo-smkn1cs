@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - BUMO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>BUMO</h2>
+                <p>Admin Panel</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#reports" class="nav-item" data-section="reports">
+                    <span class="icon">💰</span>
+                    <span>Reports</span>
+                </a>
+                <a href="#articles" class="nav-item" data-section="articles">
+                    <span class="icon">📝</span>
+                    <span>Articles</span>
+                </a>
+                <a href="#docs" class="nav-item" data-section="docs">
+                    <span class="icon">📸</span>
+                    <span>Documentation</span>
+                </a>
+                <a href="#alumni" class="nav-item" data-section="alumni">
+                    <span class="icon">🎓</span>
+                    <span>Alumni</span>
+                </a>
+                <a href="#structure" class="nav-item" data-section="structure">
+                    <span class="icon">👥</span>
+                    <span>Structure</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button onclick="logout()" class="btn-logout">
+                    <span class="icon">🚪</span>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="content-header">
+                <h1 id="sectionTitle">Dashboard</h1>
+                <div class="header-actions">
+                    <a href="/index.html" target="_blank" class="btn btn-secondary">View Website</a>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Total Revenue</div>
+                            <div class="stat-value" id="dashTotalRevenue">Rp 0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📝</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Articles</div>
+                            <div class="stat-value" id="dashTotalArticles">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📸</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Documentation</div>
+                            <div class="stat-value" id="dashTotalDocs">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎓</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Alumni</div>
+                            <div class="stat-value" id="dashTotalAlumni">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Recent Activities</h2>
+                    <p>Welcome to BUMO Admin Dashboard. Manage your organization's data efficiently.</p>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="content-section">
+                <div class="section-actions">
+                    <button onclick="showReportForm()" class="btn btn-primary">+ Add Report</button>
+                </div>
+
+                <div class="card">
+                    <h2>Financial Reports</h2>
+                    <div id="reportsTable"></div>
+                </div>
+
+                <!-- Report Form Modal -->
+                <div id="reportModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 id="reportModalTitle">Add Financial Report</h2>
+                            <button onclick="closeReportModal()" class="modal-close">×</button>
+                        </div>
+                        <form id="reportForm">
+                            <input type="hidden" id="reportId">
+                            <div class="form-group">
+                                <label>Period</label>
+                                <input type="text" id="reportPeriod" required placeholder="e.g., Q1 2024">
+                            </div>
+                            <div class="form-group">
+                                <label>Date</label>
+                                <input type="date" id="reportDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Revenue (Rp)</label>
+                                <input type="number" id="reportRevenue" required min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Expenses (Rp)</label>
+                                <input type="number" id="reportExpenses" required min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea id="reportDescription" rows="3"></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" onclick="closeReportModal()" class="btn btn-secondary">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Articles Section -->
+            <section id="articles" class="content-section">
+                <div class="section-actions">
+                    <button onclick="showArticleForm()" class="btn btn-primary">+ Add Article</button>
+                </div>
+
+                <div class="card">
+                    <h2>Articles</h2>
+                    <div id="articlesTable"></div>
+                </div>
+
+                <!-- Article Form Modal -->
+                <div id="articleModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 id="articleModalTitle">Add Article</h2>
+                            <button onclick="closeArticleModal()" class="modal-close">×</button>
+                        </div>
+                        <form id="articleForm">
+                            <input type="hidden" id="articleId">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" id="articleTitle" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Author</label>
+                                <input type="text" id="articleAuthor" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Date</label>
+                                <input type="date" id="articleDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Excerpt</label>
+                                <input type="text" id="articleExcerpt" placeholder="Short summary">
+                            </div>
+                            <div class="form-group">
+                                <label>Content</label>
+                                <textarea id="articleContent" rows="8" required></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" onclick="closeArticleModal()" class="btn btn-secondary">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Documentation Section -->
+            <section id="docs" class="content-section">
+                <div class="section-actions">
+                    <button onclick="showDocForm()" class="btn btn-primary">+ Add Documentation</button>
+                </div>
+
+                <div class="card">
+                    <h2>Documentation</h2>
+                    <div id="docsGrid"></div>
+                </div>
+
+                <!-- Documentation Form Modal -->
+                <div id="docModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Add Documentation</h2>
+                            <button onclick="closeDocModal()" class="modal-close">×</button>
+                        </div>
+                        <form id="docForm" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" id="docTitle" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea id="docDescription" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Date</label>
+                                <input type="date" id="docDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Image</label>
+                                <input type="file" id="docImage" accept="image/*" required>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" onclick="closeDocModal()" class="btn btn-secondary">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Upload</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Alumni Section -->
+            <section id="alumni" class="content-section">
+                <div class="section-actions">
+                    <button onclick="showAlumniForm()" class="btn btn-primary">+ Add Alumni</button>
+                </div>
+
+                <div class="card">
+                    <h2>Alumni</h2>
+                    <div id="alumniTable"></div>
+                </div>
+
+                <!-- Alumni Form Modal -->
+<!-- Alumni Form Modal -->
+<div id="alumniModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="alumniModalTitle">Add Alumni</h2>
+            <button onclick="closeAlumniModal()" class="modal-close">×</button>
+        </div>
+        <form id="alumniForm" enctype="multipart/form-data">
+            <input type="hidden" id="alumniId">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="alumniName" required>
+            </div>
+            <div class="form-group">
+                <label>Photo</label>
+                <input type="file" id="alumniPhoto" accept="image/*">
+                <small style="color: #7F8C8D;">Upload foto alumni (optional)</small>
+            </div>
+            <div class="form-group">
+                <label>Period</label>
+                <input type="text" id="alumniPeriod" required placeholder="e.g., 2023/2024">
+            </div>
+            <div class="form-group">
+                <label>Position</label>
+                <input type="text" id="alumniPosition" required>
+            </div>
+            <div class="form-group">
+                <label>Graduation Year</label>
+                <input type="text" id="alumniYear" required>
+            </div>
+            <div class="form-group">
+                <label>Major</label>
+                <input type="text" id="alumniMajor" required>
+            </div>
+            <div class="form-actions">
+                <button type="button" onclick="closeAlumniModal()" class="btn btn-secondary">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+            </section>
+
+            <!-- Structure Section -->
+            <section id="structure" class="content-section">
+                <div class="section-actions">
+                    <button onclick="showStructureForm()" class="btn btn-primary">+ Add Member</button>
+                </div>
+
+                <div class="card">
+                    <h2>Organization Structure</h2>
+                    <div id="structureTable"></div>
+                </div>
+
+                <!-- Structure Form Modal -->
+<div id="structureModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="structureModalTitle">Add Structure Member</h2>
+            <button onclick="closeStructureModal()" class="modal-close">×</button>
+        </div>
+        <form id="structureForm" enctype="multipart/form-data">
+            <input type="hidden" id="structureId">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="structureName" required>
+            </div>
+            <div class="form-group">
+                <label>Photo</label>
+                <input type="file" id="structurePhoto" accept="image/*">
+                <small style="color: #7F8C8D;">Upload foto pengurus (optional)</small>
+            </div>
+            <div class="form-group">
+                <label>Position</label>
+                <input type="text" id="structurePosition" required>
+            </div>
+            <div class="form-group">
+                <label>Period</label>
+                <input type="text" id="structurePeriod" required placeholder="e.g., 2024/2025">
+            </div>
+            <div class="form-group">
+                <label>Division</label>
+                <input type="text" id="structureDivision" required>
+            </div>
+            <div class="form-actions">
+                <button type="button" onclick="closeStructureModal()" class="btn btn-secondary">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/admin/js/admin.js"></script>
+</body>
+</html>
